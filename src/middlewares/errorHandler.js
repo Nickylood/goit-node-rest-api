@@ -16,10 +16,10 @@ export const errorHandler = (err, req, res, next) => {
       status: err.status,
       message: 'Mongoose error',
     });
+  } else {
+    res.status(500).json({
+      message: 'Something went wrong',
+      error: err.message,
+    });
   }
-
-  res.status(500).json({
-    message: 'Something went wrong',
-    error: err.message,
-  });
 };
