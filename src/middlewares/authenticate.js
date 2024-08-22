@@ -1,4 +1,3 @@
-// import jwt from 'jsonwebtoken';
 import createHttpError from 'http-errors';
 import { Session } from '../models/session.js';
 import UsersCollection from '../models/user.js';
@@ -27,28 +26,14 @@ export const authenticate = async (req, res, next) => {
       return next(createHttpError(401, 'Session token is expired!'));
     }
 
-    // const isAccessTokenExpired =
-    //   new Date() > new Date(session.accessTokenValidUntil);
-
-    // if (isAccessTokenExpired) {
-    //   next(createHttpError(401, 'Access token expired'));
-    // }
-
     const user = await UsersCollection.findById(session.userId);
 
     if (!user) {
       return next(createHttpError(401));
     }
 
-    // const sessionId =req.cookies.sessionId;
-    // const refreshToken = req.cookies.refreshToken;
-    // if (!session || !refreshToken) {
-    //   return next(createHttpError(401, 'Session or refresh token missing'));
-    // }
-
     req.user = user;
-    // req.sessionId = sessionId;
-    // req.refreshToken = refreshToken;
+    
     next();
   } catch (error) {
     next(error);
