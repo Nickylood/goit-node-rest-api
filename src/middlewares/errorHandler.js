@@ -2,6 +2,7 @@ import { isHttpError } from 'http-errors';
 import { MongooseError } from 'mongoose';
 
 export const errorHandler = (err, req, res, next) => {
+  console.error('errorHandler mistake', err);
   if (isHttpError(err)) {
     res.status(err.status).json({
       status: err.status,

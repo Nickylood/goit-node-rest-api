@@ -41,6 +41,7 @@ export const getContactById = async (contactId, userId) => {
 };
 
 export const createContact = async (payload) => {
+  console.log('Peyload post', payload);
   const contact = await Contact.create(payload);
   return contact;
 };
@@ -63,13 +64,14 @@ export const updateContact = async (
   const rawResult = await Contact.findOneAndUpdate(
     { _id: contactId, userId },
     payload,
+
     {
       new: true,
       includeResultMetadata: true,
       ...options,
     },
   );
-  console.log('rawResult:', rawResult);
+
   if (!rawResult || !rawResult.value) return null;
 
   return rawResult.value;
