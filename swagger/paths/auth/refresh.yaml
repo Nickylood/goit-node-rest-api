@@ -1,0 +1,42 @@
+tags:
+  - Auth
+summary: Refresh user
+operationId: PostAuthRefresh
+description: 'Refresh user'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            type: string
+            example: jhvnbv.example.com
+          password:
+            type: string
+            example: jhvnbv32465
+responses:
+  '200':
+    description: User was refreshed
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully logged in an user!
+  '401':
+    $ref: '../../components/responses/401.yaml'

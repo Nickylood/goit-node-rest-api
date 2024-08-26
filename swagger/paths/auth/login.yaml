@@ -1,0 +1,48 @@
+tags:
+  - Auth
+summary: Login user
+operationId: PostAuthLogin
+description: Login user
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            type: string
+            example: jhvnbv.example.com
+          password:
+            type: string
+            example: jhvnbv32465
+responses:
+  '200':
+    description: User was logged in
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully logged in an user!
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  example: TlC2HOad/gUl4YlcjdbysFsR73PsKgxfs1v8W/M5 
+  '400':
+    $ref: '../../components/responses/400.yaml'

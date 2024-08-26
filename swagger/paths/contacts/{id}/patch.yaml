@@ -1,0 +1,69 @@
+tags:
+  - Contacts
+summary: Update contact by id
+operationId: patchContact
+description: 'Patch contact by id'
+security: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: 'John Doe'
+          phoneNumber:
+            description: "Contact's phoneNumber"
+            type: number
+            example: +380965584628
+          contactType:
+            description: 'Type of a contact'
+            type: string
+            enum: ['work', 'home', 'personal']
+            example: 'work'
+            default: 'personal'
+          email:
+            type: string
+            description: 'Email of a contact'
+            example: 'jhgd@example.com'
+          isFavourite:
+            description: 'Whether contact is favourite'
+            type: boolean
+            example: false
+          photo:
+            description: "Link to contact's photo"
+            type: string
+            example: <https://res.cloudinary.com/uqwgdu/image/upload/image.png>
+            format: binary
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '66af594a13656bd084aafd37'
+responses:
+  '200':
+    description: 'Update contact by id'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully update contact with id 66af594a13656bd084aafd37!
+            data:
+              type: object
+              $ref: '../../../components/schemas/contact.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'

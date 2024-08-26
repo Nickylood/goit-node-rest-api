@@ -8,6 +8,8 @@ import { notFoundHandler } from './middlewares/newFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 import router from './routers/index.js';
+import { UPLOAD_DIR } from './constants/index.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 const PORT = process.env.PORT || 3000;
 
@@ -20,6 +22,10 @@ export const setupServer = () => {
     }),
   );
   app.use(cors());
+
+  app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use('/api-docs', swaggerDocs());
+
   app.use(
     pino({
       transport: { target: 'pino-pretty' },

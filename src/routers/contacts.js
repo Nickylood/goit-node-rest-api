@@ -33,8 +33,8 @@ router.post(
 router.delete('/:contactId', ctrlWrapper(deleteContactController));
 router.put(
   '/:contactId',
-  upload.single('photo'),
   validateBody(createContactSchema),
+  upload.single('photo'),
   ctrlWrapper(upsertContactController),
 );
 router.patch(

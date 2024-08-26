@@ -33,3 +33,10 @@ export const CLOUDINARY = {
   API_KEY: 'API_KEY',
   API_SECRET: 'API_SECRET',
 };
+
+export const GOOGLE = {
+  CLIENT_SECRET: 'GOOGLE_AUTH_CLIENT_SECRET',
+  CLIENT_ID: 'GOOGLE_AUTH_CLIENT_ID',
+};
+
+export const SWAGGER_PATH = path.join(process.cwd(), 'docs', 'swagger.json');
